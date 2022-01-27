@@ -1,0 +1,17 @@
+---
+- hosts: all
+  user: root
+  tasks:
+    
+
+  - name: ssh port change
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^port22'
+      line: port=28676
+
+  - name: Restart sshd service
+    service:
+      name: sshd
+      state: restarted
+
